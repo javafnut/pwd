@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<passwordFile>
+    <siteList>
+        <site siteId="100">
+            <siteName>Test Site - 0</siteName>
+            <catId>100</catId>
+            <appUserId>0</appUserId>
+            <siteURL>FooURL - 0</siteURL>
+            <siteLogin>SiteLogin - 0</siteLogin>
+            <password>ClHNIt/YXZdOCMI44VJdI4gZi/M=</password>
+            <notes>Foo Bar Comment - 0</notes>
+        </site>
+        <site siteId="101">
+            <siteName>Test Site - 1</siteName>
+            <catId>100</catId>
+            <appUserId>0</appUserId>
+            <siteURL>FooURL - 1</siteURL>
+            <siteLogin>SiteLogin - 1</siteLogin>
+            <password>ClHNIt/YXZdOCMI44VJdI4gZi/M=</password>
+            <notes>Foo Bar Comment - 1</notes>
+        </site>
+        <site siteId="102">
+            <siteName>Test Site - 2</siteName>
+            <catId>100</catId>
+            <appUserId>0</appUserId>
+            <siteURL>FooURL - 2</siteURL>
+            <siteLogin>SiteLogin - 2</siteLogin>
+            <password>ClHNIt/YXZdOCMI44VJdI4gZi/M=</password>
+            <notes>Foo Bar Comment - 2</notes>
+        </site>
+        <site siteId="103">
+            <siteName>Test Site - 3</siteName>
+            <catId>100</catId>
+            <appUserId>0</appUserId>
+            <siteURL>FooURL - 3</siteURL>
+            <siteLogin>SiteLogin - 3</siteLogin>
+            <password>ClHNIt/YXZdOCMI44VJdI4gZi/M=</password>
+            <notes>Foo Bar Comment - 3</notes>
+        </site>
+        <site siteId="104">
+            <siteName>Test Site - 4</siteName>
+            <catId>100</catId>
+            <appUserId>0</appUserId>
+            <siteURL>FooURL - 4</siteURL>
+            <siteLogin>SiteLogin - 4</siteLogin>
+            <password>ClHNIt/YXZdOCMI44VJdI4gZi/M=</password>
+            <notes>Foo Bar Comment - 4</notes>
+        </site>
+        <site siteId="105">
+            <siteName>Test Site - 5</siteName>
+            <catId>100</catId>
+            <appUserId>0</appUserId>
+            <siteURL>FooURL - 5</siteURL>
+            <siteLogin>SiteLogin - 5</siteLogin>
+            <password>ClHNIt/YXZdOCMI44VJdI4gZi/M=</password>
+            <notes>Foo Bar Comment - 5</notes>
+        </site>
+        <site siteId="106">
+            <siteName>Test Site - 6</siteName>
+            <catId>100</catId>
+            <appUserId>0</appUserId>
+            <siteURL>FooURL - 6</siteURL>
+            <siteLogin>SiteLogin - 6</siteLogin>
+            <password>ClHNIt/YXZdOCMI44VJdI4gZi/M=</password>
+            <notes>Foo Bar Comment - 6</notes>
+        </site>
+        <site siteId="107">
+            <siteName>Test Site - 7</siteName>
+            <catId>100</catId>
+            <appUserId>0</appUserId>
+            <siteURL>FooURL - 7</siteURL>
+            <siteLogin>SiteLogin - 7</siteLogin>
+            <password>ClHNIt/YXZdOCMI44VJdI4gZi/M=</password>
+            <notes>Foo Bar Comment - 7</notes>
+        </site>
+        <site siteId="108">
+            <siteName>Test Site - 8</siteName>
+            <catId>100</catId>
+            <appUserId>0</appUserId>
+            <siteURL>FooURL - 8</siteURL>
+            <siteLogin>SiteLogin - 8</siteLogin>
+            <password>ClHNIt/YXZdOCMI44VJdI4gZi/M=</password>
+            <notes>Foo Bar Comment - 8</notes>
+        </site>
+        <site siteId="109">
+            <siteName>Test Site - 9</siteName>
+            <catId>100</catId>
+            <appUserId>0</appUserId>
+            <siteURL>FooURL - 9</siteURL>
+            <siteLogin>SiteLogin - 9</siteLogin>
+            <password>ClHNIt/YXZdOCMI44VJdI4gZi/M=</password>
+            <notes>Foo Bar Comment - 9</notes>
+        </site>
+    </siteList>
+    <appUser>
+        <firstName>First</firstName>
+        <lastName>Last</lastName>
+        <password>ClHNIt/YXZdOCMI44VJdI4gZi/M=</password>
+        <salt>V0dcYdribT8=</salt>
+        <userId>10000</userId>
+    </appUser>
+    <pwdFileName>./pwdFile-jaxb.xml</pwdFileName>
+</passwordFile>

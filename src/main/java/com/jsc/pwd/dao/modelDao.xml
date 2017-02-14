@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd"> 
+
+<sqlMap namespace="user">
+
+
+ <typeAlias  type="com.jsc.pwd.model.AppUser" alias="USER"/>
+ <typeAlias  type="com.jsc.pwd.model.Category" alias="CATEGORY"/>
+   <typeAlias  type="com.jsc.pwd.model.Site" alias="SITE"/>
+ 
+   <resultMap  id="userResultMap" class="USER">
+   		   		<result property="userId" column="USER_ID" />
+   		   		<result property="firstName" column="FIRST_NAME" />
+   		   		<result property="lastName" column="LAST_NAME" />
+   		   		<result property="email" column="EMAIL" />
+   		   		<result property="password" column="USER_PWD" />
+  		   		<result property="salt" column="USER_SALT" />
+  		   	    <result property="createDate" column="CREATE_DATE" />
+		        <result property="modDate"    column="MOD_DATE" />
+   		</resultMap>
+   
+
+    <select id="getUserById" parameterClass="java.lang.Long" resultMap="userResultMap">
+		  SELECT * FROM APP_USER WHERE USER_ID = #value#
+	</select>
+	
+	<select id="getAllUsers"  resultMap="userResultMap">
+		  SELECT * FROM APP_USER
+	</select>
+	
+	<select id="getUserMaxId" resultClass="java.lang.Long">
+		  SELECT MAX(USER_ID) FROM APP_USER
+	</select>
+	
+	<insert id="addUser" parameterClass="USER">
+	     <selectKey
+	        keyProperty="userId"
+	        resultClass="long">
+	        SELECT TEST_SEQ.NEXTVAL FROM DUAL
+	     </selectKey>
+	     INSERT INTO APP_USER (USER_ID,FIRST_NAME,LAST_NAME,EMAIL,USER_PWD,USER_SALT,CREATE_DATE,MOD_DATE)
+		 VALUES(#userId#,#firstName#,#firstName#,#email#,#password#,#salt#,#createDate#,#modDate#)
+	</insert> 
+
+	<update id="updateUserById" parameterClass="USER">
+	  UPDATE APP_USER SET
+	    FIRST_NAME=#firstName#,
+	    LAST_NAME=#lastName#,
+	    EMAIL=#email#,
+	    USER_PWD=#password#,
+	    USER_SALT=#salt#,
+	    MOD_DATE="#modDate#",
+	    WHERE USER_ID=#userId#
+	 </update>
+	    
+	<delete id="deleteUserById" parameterClass="java.lang.Long">
+		  DELETE FROM APP_USER WHERE USER_ID = #value#
+	</delete>
+  
+	<select id="countAllUsers" resultClass="java.lang.Long">
+		      SELECT COUNT(*) FROM APP_USER
+	</select>
+	
+	 
+<!-- Category 	-->
+	
+	<resultMap id="catResultMap" class="CATEGORY">
+		<result property="catId" column="CAT_ID" />
+		<result property="name" column="NAME" />
+  		<result property="description" column="DESCRIPTION" />
+  		<result property="parentId" column="PARENT_CAT_ID" />
+  		<result property="userId" column="APP_USER_ID" />
+  		<result property="createDate" column="CREATE_DATE" />
+		<result property="modDate"    column="MOD_DATE" />
+	</resultMap>
+
+	<select id="getCategoryById" parameterClass="java.lang.Long" resultMap="catResultMap">
+		  SELECT * FROM SITE_CATEGORY WHERE CAT_ID = #value#
+	</select>
+	
+    <select id="getRootCategory" parameterClass="java.lang.Long" resultMap="catResultMap">
+		  SELECT * FROM SITE_CATEGORY WHERE APP_USER_ID = #value# AND PARENT_CAT_ID = #value#
+	</select>
+	
+    <select id="getAllCategoriesById" parameterClass="java.lang.Long" resultMap="catResultMap">
+		  SELECT * FROM SITE_CATEGORY WHERE APP_USER_ID = #value#
+	</select>
+	
+	<select id="getMaxCategoryId" resultClass="java.lang.Long">
+		  SELECT MAX(CAT_ID) FROM SITE_CATEGORY
+	</select>
+	
+	
+	<update id="updateCategoryById" parameterClass="CATEGORY">
+	    UPDATE SITE_CATEGORY S SET
+	     S.NAME=#name#,
+	     S.DESCRIPTION=#description#,
+	     S.PARENT_CAT_ID=#parentId#,
+	     S.APP_USER_ID=#userId#,
+	     S.MOD_DATE=#modDate#
+	    WHERE S.CAT_ID=#catId#
+	</update>
+	
+	<insert id="addCategory" parameterClass="CATEGORY">
+        <selectKey
+           keyProperty="catId"
+           resultClass="long">
+           SELECT TEST_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+	    INSERT INTO SITE_CATEGORY (CAT_ID,NAME,DESCRIPTION,PARENT_CAT_ID,APP_USER_ID)
+    	  values (#catId#,#name#,#description#,#parentId#,#userId#)
+	</insert>
+
+
+		<delete id="deleteCategoriesByAppUserId" parameterClass="java.lang.Long">
+		  DELETE FROM SITE_CATEGORY WHERE APP_USER_ID = #value#
+	   </delete>	
+	
+	<delete id="deleteCategoryById" parameterClass="java.lang.Long">
+		  DELETE FROM SITE_CATEGORY WHERE CAT_ID = #value#
+	</delete>	
+	
+ 
+    <select id="countAllCategories" resultClass="java.lang.Long">
+		      SELECT COUNT(*) FROM SITE_CATEGORY
+	</select>	 
+
+	
+	<!-- SITE -->
+
+  <resultMap id="siteResultMap" class="SITE">
+		<result property="siteId" column="SITE_ID" />
+		<result property="appUserId" column="APP_USER_ID" />
+		<result property="catId" column="CAT_ID" />
+		<result property="siteName" column="NAME" />
+		<result property="siteLogin" column="LOGIN" />
+		<result property="password" column="SITE_PWD" />
+  		<result property="siteURL" column="URL" />
+		<result property="notes" column="NOTES" />
+		<result property="createDate" column="CREATE_DATE" />
+		<result property="modDate"    column="MOD_DATE" />
+	</resultMap>
+	
+
+	<insert id="addSite" parameterClass="SITE">
+	     <selectKey
+           keyProperty="siteId"
+           resultClass="long">
+           SELECT TEST_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO SITE(SITE_ID,NAME,LOGIN,URL,CAT_ID,APP_USER_ID,NOTES,SITE_PWD,CREATE_DATE,MOD_DATE)
+        VALUES(#siteId#,#siteName#,#siteLogin#,#siteURL#,#catId#,#appUserId#,#notes#,#password#,#createDate#,#modDate#)
+	</insert>	
+	
+		
+	<update id="updateSiteById" parameterClass="SITE">
+	  UPDATE SITE SET
+ 		APP_USER_ID=#appUserId#,
+ 		CAT_ID=#catId#,
+ 		NAME=#siteName#,
+ 		LOGIN=#siteLogin#,
+ 		SITE_PWD=#password#,
+ 		URL=#siteURL#,
+ 		NOTES=#notes#,
+ 		MOD_DATE=#modDate#"
+ 	   WHERE SITE_ID=#siteId#
+	 </update>
+	
+	<select id="getSiteById" parameterClass="java.lang.Long" resultMap="siteResultMap">
+		  SELECT * FROM SITE WHERE SITE_ID = #value#
+	</select>
+	
+	<select id="getAllSitesByCatId" parameterClass="java.lang.Long" resultMap="siteResultMap">
+		  SELECT * FROM SITE WHERE CAT_ID = #value#
+	</select>
+
+
+	<select id="getMaxSiteId" resultClass="java.lang.Long">
+		  SELECT MAX(SITE_ID) FROM SITE
+	</select>
+	
+	<delete id="deleteSiteById" parameterClass="java.lang.Long">
+		  DELETE FROM SITE WHERE SITE_ID = #value#
+	</delete>	
+	
+	<delete id="deleteSitesByCatId" parameterClass="java.lang.Long">
+		  DELETE FROM SITE WHERE CAT_ID = #value#
+	</delete>	
+	
+ 
+	<select id="countAllSites" resultClass="java.lang.Long">
+		      SELECT COUNT(*) FROM SITE
+	</select>	
+
+	
+
+</sqlMap>
